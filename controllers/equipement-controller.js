@@ -48,7 +48,6 @@ const equipementController = {
     },
 
     update: async (req, res) => {
-        console.log(req.body);
         const id = req.params.id;
         const data = req.validatedData;
         // Add file if file is sent or keep existing.

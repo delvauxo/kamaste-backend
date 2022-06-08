@@ -19,6 +19,14 @@ module.exports = (sequelize) => {
         description: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        lien: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        pastille: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     });
 
