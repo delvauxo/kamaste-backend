@@ -50,7 +50,6 @@ const momentController = {
     update: async (req, res) => {
         const id = req.params.id;
         const data = req.validatedData;
-        console.log(data);
         // Add file if file is sent or keep existing.
         if (req.file) {
             data.pastille = req.file.filename;

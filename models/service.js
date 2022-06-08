@@ -16,11 +16,19 @@ module.exports = (sequelize) => {
         // Attributs.
         nom: {
             type: DataTypes.STRING,
-            allowNull: null
+            allowNull: false
+        },
+        lien: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: null
+            allowNull: false
+        },
+        pastille: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     });
     return Service;

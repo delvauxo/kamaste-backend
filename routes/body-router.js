@@ -30,7 +30,7 @@ const EquipementStorage = multer.diskStorage({
 const uploadEquipement = multer({ storage: EquipementStorage });
 
 // Moment - Multer (File upload) config.
-const Momentstorage = multer.diskStorage({
+const momentStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         const path = `./uploads/pastilles/moments`;
         fs.mkdirSync(path, { recursive: true });
@@ -40,7 +40,20 @@ const Momentstorage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
     }
 });
-const uploadMoment = multer({ storage: Momentstorage });
+const uploadMoment = multer({ storage: momentStorage });
+
+// Service - Multer (File upload) config.
+const ServiceStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const path = `./uploads/pastilles/services`;
+        fs.mkdirSync(path, { recursive: true });
+        return cb(null, path);
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
+    }
+});
+const uploadService = multer({ storage: ServiceStorage });
 
 
 // Reservation.
@@ -66,12 +79,12 @@ bodyRouter.route('/equipement/:id([0-9]+)')
 // Service.
 bodyRouter.route('/service')
     .get(serviceController.getAll)
-    .post(authentificateJwt({ adminRight: true }), bodyValidation(serviceValidator), serviceController.add);
+    .post(authentificateJwt({ adminRight: true }), uploadService.single('pastille'), bodyValidation(serviceValidator), serviceController.add);
 
 bodyRouter.route('/service/:id([0-9]+)')
     .get(serviceController.getOne)
     .delete(authentificateJwt({ adminRight: true }), serviceController.delete)
-    .put(authentificateJwt({ adminRight: true }), bodyValidation(serviceValidator), serviceController.update);
+    .put(authentificateJwt({ adminRight: true }), uploadService.single('pastille'), bodyValidation(serviceValidator), serviceController.update);
 
 // Moment.
 bodyRouter.route('/moment')
