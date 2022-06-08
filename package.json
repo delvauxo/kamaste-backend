@@ -1,0 +1,49 @@
+{
+  "name": "kamaste",
+  "version": "0.1.0",
+  "description": "Kamaste API",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Form-JS/Demo-Express-API-02-Forum.git"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "API",
+    "Forum",
+    "JWT"
+  ],
+  "author": "Aurélien",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Form-JS/Demo-Express-API-02-Forum/issues"
+  },
+  "homepage": "https://github.com/Form-JS/Demo-Express-API-02-Forum#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.17.0",
+    "tedious": "^14.3.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
