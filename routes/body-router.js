@@ -2,19 +2,18 @@ const { authentificateJwt } = require('../middlewares/authentificate-jwt');
 const bodyValidation = require('../middlewares/body-validation-middleware');
 const { equipementValidator } = require('../validators/equipement-validator');
 const { momentValidator } = require('../validators/moment-validator');
-const { reservationValidator } = require('../validators/reservation-validator');
 const { serviceValidator } = require('../validators/service-validator');
 const equipementController = require('../controllers/equipement-controller');
 const momentController = require('../controllers/moment-controller');
-const reservationController = require('../controllers/reservation-controller');
 const serviceController = require('../controllers/service-controller');
+const temoignageController = require('../controllers/temoignage-controller');
 const fs = require('fs');
 
 const bodyRouter = require('express').Router();
 
-
 const multer = require('multer');
 const path = require('path');
+const { temoignageValidator } = require('../validators/temoignage-validator');
 
 // Equipement - Multer (File upload) config.
 const EquipementStorage = multer.diskStorage({
@@ -55,17 +54,6 @@ const ServiceStorage = multer.diskStorage({
 });
 const uploadService = multer({ storage: ServiceStorage });
 
-
-// Reservation.
-bodyRouter.route('/reservation')
-    .get(reservationController.getAll)
-    .post(authentificateJwt({ adminRight: true }), bodyValidation(reservationValidator), reservationController.add);
-
-bodyRouter.route('/reservation/:id([0-9]+)')
-    .get(reservationController.getOne)
-    .delete(authentificateJwt({ adminRight: true }), reservationController.delete)
-    .put(authentificateJwt({ adminRight: true }), bodyValidation(reservationValidator), reservationController.update);
-
 // Equipement.
 bodyRouter.route('/equipement')
     .get(equipementController.getAll)
@@ -95,5 +83,15 @@ bodyRouter.route('/moment/:id([0-9]+)')
     .get(momentController.getOne)
     .delete(authentificateJwt({ adminRight: true }), momentController.delete)
     .put(authentificateJwt({ adminRight: true }), uploadMoment.single('pastille'), bodyValidation(momentValidator), momentController.update);
+
+// Temoignage.
+bodyRouter.route('/temoignage')
+    .get(temoignageController.getAll)
+    .post(authentificateJwt({ adminRight: true }), bodyValidation(temoignageValidator), temoignageController.add);
+
+bodyRouter.route('/temoignage/:id([0-9]+)')
+    .get(temoignageController.getOne)
+    .delete(authentificateJwt({ adminRight: true }), temoignageController.delete)
+    .put(authentificateJwt({ adminRight: true }), bodyValidation(temoignageValidator), temoignageController.update);
 
 module.exports = bodyRouter;

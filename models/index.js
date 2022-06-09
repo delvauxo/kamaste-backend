@@ -25,10 +25,10 @@ db.sequelize = sequelize;
 db.Member = require('./member')(sequelize);
 // NEW ONES.
 db.Espace = require('./espace')(sequelize);
-db.Reservation = require('./reservation')(sequelize);
 db.Equipement = require('./equipement')(sequelize);
 db.Service = require('./service')(sequelize);
 db.Moment = require('./moment')(sequelize);
+db.Temoignage = require('./temoignage')(sequelize);
 
 // Add Association
 // - [Many to Many] Espace - Equipement

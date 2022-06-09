@@ -27,7 +27,7 @@ const serviceController = {
         // Add file.
         data.pastille = req.file.filename;
         const newService = await db.Service.create(data);
-        res.json(new SuccessObjectResponse(newService));
+        return res.json(new SuccessObjectResponse(newService));
     },
 
     delete: async (req, res) => {
