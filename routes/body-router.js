@@ -82,7 +82,12 @@ bodyRouter.route('/moment')
 bodyRouter.route('/moment/:id([0-9]+)')
     .get(momentController.getOne)
     .delete(authentificateJwt({ adminRight: true }), momentController.delete)
-    .put(authentificateJwt({ adminRight: true }), uploadMoment.single('pastille'), bodyValidation(momentValidator), momentController.update);
+    .put(
+        authentificateJwt({ adminRight: true }),
+        uploadMoment.fields([{ name: 'pastille' }]),
+        bodyValidation(momentValidator),
+        momentController.update
+    );
 
 // Temoignage.
 bodyRouter.route('/temoignage')

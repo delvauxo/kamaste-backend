@@ -51,14 +51,19 @@ const momentController = {
 
         console.log('ENTER to UPDATE method controller !!!');
 
-        console.log('REQ.FILE');
-        console.log(req.file);
+        console.log('REQ.FILES');
+        console.log(req.files);
+        console.log('REQ.FILES.PASTILLE');
+        console.log(req.files.pastille);
+
+        console.log('REQ.FILES.PASTILLE[0]');
+        console.log(req.files.pastille[0]);
 
         const id = req.params.id;
         const data = req.validatedData;
         // Add file if file is sent or keep existing.
-        if (req.file) {
-            data.pastille = req.file.filename;
+        if (req.files.pastille) {
+            data.pastille = req.files.pastille[0].filename;
         } else {
             data.pastille = req.body.fileToKeep;
         }
