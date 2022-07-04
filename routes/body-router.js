@@ -3,6 +3,7 @@ const bodyValidation = require('../middlewares/body-validation-middleware');
 const { equipementValidator } = require('../validators/equipement-validator');
 const { momentValidator } = require('../validators/moment-validator');
 const { serviceValidator } = require('../validators/service-validator');
+const { temoignageValidator } = require('../validators/temoignage-validator');
 const equipementController = require('../controllers/equipement-controller');
 const momentController = require('../controllers/moment-controller');
 const serviceController = require('../controllers/service-controller');
@@ -13,7 +14,6 @@ const bodyRouter = require('express').Router();
 
 const multer = require('multer');
 const path = require('path');
-const { temoignageValidator } = require('../validators/temoignage-validator');
 
 // Equipement - Multer (File upload) config.
 const EquipementStorage = multer.diskStorage({

@@ -48,6 +48,12 @@ const momentController = {
     },
 
     update: async (req, res) => {
+
+        console.log('ENTER to UPDATE method controller !!!');
+
+        console.log('REQ.FILE');
+        console.log(req.file);
+
         const id = req.params.id;
         const data = req.validatedData;
         // Add file if file is sent or keep existing.
