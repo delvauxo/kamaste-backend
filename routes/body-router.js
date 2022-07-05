@@ -77,14 +77,19 @@ bodyRouter.route('/service/:id([0-9]+)')
 // Moment.
 bodyRouter.route('/moment')
     .get(momentController.getAll)
-    .post(authentificateJwt({ adminRight: true }), uploadMoment.single('pastille'), bodyValidation(momentValidator), momentController.add);
+    .post(
+        authentificateJwt({ adminRight: true }),
+        uploadMoment.fields([{ name: 'pastille' }, { name: 'image' }]),
+        bodyValidation(momentValidator),
+        momentController.add
+    );
 
 bodyRouter.route('/moment/:id([0-9]+)')
     .get(momentController.getOne)
     .delete(authentificateJwt({ adminRight: true }), momentController.delete)
     .put(
         authentificateJwt({ adminRight: true }),
-        uploadMoment.fields([{ name: 'pastille' }]),
+        uploadMoment.fields([{ name: 'pastille' }, { name: 'image' }]),
         bodyValidation(momentValidator),
         momentController.update
     );
