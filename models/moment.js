@@ -24,6 +24,18 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        hours: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        people: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        price: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         pastille: {
             type: DataTypes.STRING,
             allowNull: true
