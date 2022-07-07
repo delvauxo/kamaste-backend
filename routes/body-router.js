@@ -57,12 +57,22 @@ const uploadService = multer({ storage: ServiceStorage });
 // Equipement.
 bodyRouter.route('/equipement')
     .get(equipementController.getAll)
-    .post(authentificateJwt({ adminRight: true }), uploadEquipement.single('pastille'), bodyValidation(equipementValidator), equipementController.add);
+    .post(
+        authentificateJwt({ adminRight: true }),
+        uploadEquipement.fields([{ name: 'pastille' }, { name: 'image' }]),
+        bodyValidation(equipementValidator),
+        equipementController.add
+    );
 
 bodyRouter.route('/equipement/:id([0-9]+)')
     .get(equipementController.getOne)
     .delete(authentificateJwt({ adminRight: true }), equipementController.delete)
-    .put(authentificateJwt({ adminRight: true }), uploadEquipement.single('pastille'), bodyValidation(equipementValidator), equipementController.update);
+    .put(
+        authentificateJwt({ adminRight: true }),
+        uploadEquipement.fields([{ name: 'pastille' }, { name: 'image' }]),
+        bodyValidation(equipementValidator),
+        equipementController.update
+    );
 
 // Service.
 bodyRouter.route('/service')

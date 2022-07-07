@@ -23,6 +23,10 @@ module.exports = (sequelize) => {
         pastille: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     });
 
