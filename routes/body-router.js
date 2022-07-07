@@ -77,12 +77,22 @@ bodyRouter.route('/equipement/:id([0-9]+)')
 // Service.
 bodyRouter.route('/service')
     .get(serviceController.getAll)
-    .post(authentificateJwt({ adminRight: true }), uploadService.single('pastille'), bodyValidation(serviceValidator), serviceController.add);
+    .post(
+        authentificateJwt({ adminRight: true }),
+        uploadService.fields([{ name: 'pastille' }, { name: 'image' }]),
+        bodyValidation(serviceValidator),
+        serviceController.add
+    );
 
 bodyRouter.route('/service/:id([0-9]+)')
     .get(serviceController.getOne)
     .delete(authentificateJwt({ adminRight: true }), serviceController.delete)
-    .put(authentificateJwt({ adminRight: true }), uploadService.single('pastille'), bodyValidation(serviceValidator), serviceController.update);
+    .put(
+        authentificateJwt({ adminRight: true }),
+        uploadService.fields([{ name: 'pastille' }, { name: 'image' }]),
+        bodyValidation(serviceValidator),
+        serviceController.update
+    );
 
 // Moment.
 bodyRouter.route('/moment')

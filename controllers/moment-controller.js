@@ -119,7 +119,6 @@ const momentController = {
             });
         }
 
-
         if (result[0] !== 1) {
             return res.status(400).json(new ErrorResponse('Moment not found !'));
         }
