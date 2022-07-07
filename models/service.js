@@ -33,7 +33,11 @@ module.exports = (sequelize) => {
         image: {
             type: DataTypes.STRING,
             allowNull: true
-        }
+        },
+        price: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
     });
     return Service;
 };
